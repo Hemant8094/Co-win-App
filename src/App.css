@@ -1,7 +1,33 @@
 .App {
   text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
+.menu{
+  padding: 4px;
+  background-color: ghostwhite;
+  margin-right: 5px;
+  margin-left: 5px;
+  border: none;
+  border-bottom: 2px solid rgba(0,0,0,0.45);
+  border-radius: 20px;
 
+}
+.address{
+  font-family: auto;
+  text-decoration-line: underline;
+  text-decoration-color: lightblue;
+  font-style: italic;
+}
+.menu:hover{
+  box-shadow: 1px 1px 5px 0px #5755b9;
+}
+.menu:focus{
+  border: none;
+  box-shadow: 1px 1px 5px 0px #5755b9;
+
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -15,10 +41,7 @@
 
 .App-header {
   background-color: #282c34;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width:100%;
   font-size: calc(10px + 2vmin);
   color: white;
 }

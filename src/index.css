@@ -1,5 +1,6 @@
 body {
   margin: 0;
+
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +11,36 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.card {
+  text-align: left;
+    padding: 16px;
+    box-shadow: 1px 4px 6px 1px rgb(0 0 0 / 32%);
+    margin: 16px;
+}
+
+.slot {
+  border: 1px dotted lightblue;
+  padding: 8px;
+  margin: 8px;
+  margin-top: 8px;
+  background: lightblue;
+  border-top-right-radius: 25%;
+  border-bottom-left-radius: 25%;
+}
+
+.section {
+  font-size: medium;
+  font-weight: 100;
+}
+
+.vaccine-name {
+  font-size: xx-small;
+  vertical-align: super;
+  margin-left: 6px;
+  border: 1px solid lightblue;
+  border-radius: 21%;
+  background: lightblue;
+  color: white;
 }

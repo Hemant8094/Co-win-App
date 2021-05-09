@@ -8,7 +8,7 @@ function Dropdown(props){
     }
     return(
         <>
-        <select name="state" defaultValue=""  onChange={(e)=> props.onChange(e.target.value)}>
+        <select className = "menu"name="state" defaultValue=""  onChange={(e)=> props.onChange(e.target.value)}>
         <option value="" disabled >{props.placeholder}</option>
              { dropMenu()
               }
