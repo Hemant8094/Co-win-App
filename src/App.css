@@ -3,6 +3,9 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  background: #c4d1d6;
+  overflow: auto;
+  height: 100%;
 }
 .menu{
   padding: 4px;
@@ -12,6 +15,8 @@
   border: none;
   border-bottom: 2px solid rgba(0,0,0,0.45);
   border-radius: 20px;
+  box-shadow: 0px 1px 4px 0px #434c4e;
+
 
 }
 .address{
@@ -56,4 +61,57 @@
   to {
     transform: rotate(360deg);
   }
+}
+.certificate{
+  width: 30%;
+  text-align: center;
+  box-shadow: 0px 1px 4px 0px #434c4e;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 30px;
+  background: white;
+  
+}
+#root{
+  position: relative;
+  height: 100%;
+}
+body{
+  height: 100%;
+}
+html{
+  height: 100%;
+}
+.certificate div {
+  font-family: cursive;
+  padding-bottom : 10px;
+}
+.certificate div{
+  font-family: cursive;
+  padding : 10px;
+}
+.certificate span input {
+  margin-left: 5px;
+  border-radius: 20px
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  
+}
+.loading{
+  border: 3px solid #ffffff; /* Light grey */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+  border-top: 3px solid #000000; /* Blue */
+  padding: 10px;
+  margin-top: 20px;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
