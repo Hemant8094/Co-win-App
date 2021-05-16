@@ -109,7 +109,26 @@ input::-webkit-inner-spin-button {
   padding: 10px;
   margin-top: 20px;
 }
-
+.pinInput{
+  border: none;
+  box-shadow: 1px 1px 5px 0px black;
+  border-radius: 20px;
+  padding: 6px;
+  margin-bottom: 20px;
+  width: 190px;
+}
+.loginButton{
+  width: 140px;
+  position: absolute;
+  right: 10px;
+  top: -35px;
+  background: #ffc002;
+  color: black;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  padding: 6px;
+}
 
 @keyframes spin {
   0% { transform: rotate(0deg); }

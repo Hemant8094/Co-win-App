@@ -1,4 +1,4 @@
-import {useState,useEffect} from "react"
+import {useState} from "react"
 function Certificate(props){
 const [value,setvalue] = useState("")
     

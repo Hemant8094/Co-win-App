@@ -4,7 +4,7 @@ import Dropdown from "./Dropdown"
 import Loading from "./loading"
 import  Centervac from "./Centervac"
 import  Certificate from "./Certificate"
-import { distance, getLocation } from "./latRequest";
+
 
 
 function App() {
@@ -15,6 +15,8 @@ function App() {
   const [centerid,setCentersid] = useState(0)
   const [selectedDate, setDate] = useState('');
   const [loading,setLoading] = useState(false)
+  const [centersByPin,setPin] = useState([])
+  const [centerPin,setCenterPin] = useState("")
   useEffect(()=>{
     fetch("https://cdn-api.co-vin.in/api/v2/admin/location/states")
       .then(res => res.json())
@@ -33,45 +35,70 @@ function App() {
       
     })
   }
-  const getCenters =(id,date) =>{
-    // console.log(id + " asdfgh "+date)
-    // fetch("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=523&date=05-05-2021")
-    fetch("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id="+id+"&date="+date)
-    .then(res => res.json())
-    .then(_centers => {
-      if(_centers.sessions.length){
-        setCenters(_centers.sessions)
-        setLoading(false)
-      }else{
-        alert("No centers available here")
+  const getCenters =(id,date,pin) =>{
+    if(date===""){
+      alert("please select date")
+    }else if(id !== 0 && pin===""){
 
-      }
-      // return getLocation()
-      // .then(loc => {
-      //   if (loc) {
-      //     _centers.sessions.forEach(x => {
-      //       x.distance = distance(loc.coords.latitude, loc.coords.longitude, x.lat, x.long);
-      //     })
-      //     _centers.sessions.sort((a,b) => a.distance - b.distance);
+      fetch("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id="+id+"&date="+date)
+      .then(res => res.json())
+      .then(_centers => {
+        if(_centers.sessions.length){
+          setCenters(_centers.sessions)
+          setLoading(false)
+        }else{
+          alert("No centers available here")
+          setLoading(false)
   
-      //     setCenters(_centers.sessions);
-      //   }
-      // })
-    })
-    .catch((e)=> {
-      console.log(e)
+        }
+      })
+      .catch((e)=> {
+        console.log(e)
+        
+      })
+    }
+    else{
       
-    })
+      fetch("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode="+pin+"&date="+date)
+      .then(res=>res.json())
+      .then(byPin => {
+        console.log(byPin.centers)
+        if(byPin.centers.length){
+          setPin(byPin.centers)
+          setLoading(false)
+        }else{
+          alert("No centers available here")
+          setLoading(false)
+  
+        }
+        
+      })
+    }
+  
   }
-  const loadingfun = ()=>{
-    setLoading(!loading)
+  const loadingfun = (bool)=>{
+  
+    setLoading(bool)
   }
   const dowloadPdf = (id)=>{
       fetch("https://cdn-api.co-vin.in/api/v2/registration/certificate/public/download?beneficiary_reference_id="+id)
-      .then(res =>res.json())
-      .then(data=>console.log(data))
-      .catch(()=>alert("Pdf not genreted"))
+      .then(res =>res.headers)
+      .then(data=>{
+          if(data===null) alert("not")
+      })
+      
   }
+  const renderCenters =()=>{
+    if(loading){
+      return <Loading/>
+    }else if(centerPin === "" && !loading ){
+      return <Centervac centerArray ={centers}/>
+    }else {
+      return  <Centervac centerArray ={centersByPin}/>
+    }
+  }
+
+
   return (
 
     <div className="App">
@@ -80,31 +107,46 @@ function App() {
           Co-win Resources
         </h1>
       </header>
-      {/* <input  placeholder = "DD-MM-YYYY" type="date" onChange={(e)=> {
-            console.log(e.target.value);
-            // setValue(e.target.value)
-            }}/> */}
-      <div style  ={{paddingTop:"15px"}}>
+
+      <div style  ={{paddingTop:"15px", position:"relative", width:"100% "}}>
         <Dropdown stateArray = {datas} 
                   onChange = {getDistrict}
                   placeholder = "State"/>
         <Dropdown stateArray = {citys} 
               onChange = {(id) => setCentersid(id)}
               placeholder = "District"/> 
-        
-        <input  className="menu" type="date" onChange={(e)=> {
-          const date = new Date(e.target.value);
-          const dateFormat = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
-          setDate(dateFormat);
-        }}/>
-        <button className ="menu"onClick={() => {
-          getCenters(centerid, selectedDate)
-          loadingfun()
-        }
-          } >Go</button>    
+        {/* <button className = "loginButton">Sign in yourself</button>        */}
       </div>
+      <div style = {{padding:"10px"}}>OR</div>
+      <input 
+        type = "number" 
+        className = "pinInput" 
+        placeholder = "Postal Code"
+        onChange = {(e)=>{
+            setCenterPin(e.target.value)
+        }}/>
+        <div style = {{marginLeft:"15px"}}>
+          <input  className="menu" type="date" onChange={(e)=> {
+            const date = new Date(e.target.value);
+            const dateFormat = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+            setDate(dateFormat);
+          }}/>
+        { 
+        
+        citys.length || centerPin ? <button className ="menu"onClick={() => {
+        getCenters(centerid, selectedDate,centerPin)
+        
+        selectedDate!=="" ? loadingfun(true):loadingfun(false)
+        }
+      } >Go</button>  : <button className ="menu" 
+      
+      >Go</button>  
+      
+          }
+        </div>
       <div>
-        {loading ? <Loading/>:<Centervac onclick ={getCenters} id = {centerid} centerArray ={centers}/>}
+        
+        {renderCenters()}
         
       </div>
       <Certificate Download = {dowloadPdf}/> 
