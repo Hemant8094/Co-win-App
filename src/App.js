@@ -115,7 +115,7 @@ function App() {
         <Dropdown stateArray = {citys} 
               onChange = {(id) => setCentersid(id)}
               placeholder = "District"/> 
-        {/* <button className = "loginButton">Sign in yourself</button>        */}
+        <button className = "loginButton">Sign in yourself</button>       
       </div>
       <div style = {{padding:"10px"}}>OR</div>
       <input 
@@ -149,7 +149,7 @@ function App() {
         {renderCenters()}
         
       </div>
-      {/* <Certificate Download = {dowloadPdf}/>  */}
+      {/* <Certificate Download = {dowloadPdf}/>   */}
     </div>
     
       
