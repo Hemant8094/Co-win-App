@@ -149,7 +149,7 @@ function App() {
         {renderCenters()}
         
       </div>
-      <Certificate Download = {dowloadPdf}/> 
+      {/* <Certificate Download = {dowloadPdf}/>  */}
     </div>
     
       
