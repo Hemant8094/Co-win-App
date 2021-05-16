@@ -4,7 +4,7 @@ function Centervac(props){
      return   props.centerArray.map((center)=>{
             const isArray =Array.isArray(center.sessions);
             const sessions = (item)=>{
-                return center.sessions.map((x)=> x[item])
+                return center.sessions[0][item]
             }
             return <div className="card" key = {Math.random()}>
                 <div>
@@ -24,11 +24,7 @@ function Centervac(props){
                     </div>}
                 <div className ="address">In The {center.address}</div>
                 {isArray?<div style={{marginTop:'32px'}}>
-                    {sessions("slots").map((x)=> 
-                    x.map(value =><span key = {Math.random()} className="slot">{value}</span>)
-                    )
-                        
-    
+                    {sessions("slots").map((x)=> <span key = {Math.random()} className="slot">{x}</span>)
                 }
                     </div>
                     :<div style={{marginTop:'32px'}}>
