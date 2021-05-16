@@ -111,7 +111,7 @@ function App() {
       <div style  ={{paddingTop:"15px", position:"relative", width:"100% "}}>
         <Dropdown stateArray = {datas} 
                   onChange = {getDistrict}
-                  placeholder = "State"/>
+                  placeholder = "States"/>
         <Dropdown stateArray = {citys} 
               onChange = {(id) => setCentersid(id)}
               placeholder = "District"/> 
