@@ -156,6 +156,11 @@ input::-webkit-inner-spin-button {
   background: #282c34;
   color: white;
 }
+
+.getOtp:hover{
+  background: #353d4e;
+  
+}
 .bigCircle{
   position: absolute;
   background: white;
@@ -173,4 +178,8 @@ input::-webkit-inner-spin-button {
   background: #c4d1d6;
   border-radius: 50%;
   margin-top: 13%;
+}
+.loginContain{
+  display:flex;
+  justify-content:center;
 }
