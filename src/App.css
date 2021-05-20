@@ -196,6 +196,9 @@ input::-webkit-inner-spin-button {
       width: 90%;
       border-radius: 8px;
 }
+.downloadButton:hover{
+  background: #353d4e
+}
 .smallCircle{
   width: 75px;
   height: 75px;
