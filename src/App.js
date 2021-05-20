@@ -20,7 +20,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <header className="App-header">
-        <h1 style ={{marginBottom:"3px"}}>
+        <h1 style ={{marginBottom:"3px",height: "59px"}}>
           Co-win Resources
         </h1>
           <Link to  = "/sign-in">
