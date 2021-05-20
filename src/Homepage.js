@@ -1,5 +1,4 @@
 import Dropdown from "./Dropdown"
-import  Certificate from "./Certificate"
 import Loading from "./loading"
 import  Centervac from "./Centervac"
 
@@ -13,7 +12,7 @@ function Homepage(){
   const [loading,setLoading] = useState(false)
   const [centersByPin,setPin] = useState([])
   const [centerPin,setCenterPin] = useState("")
-  const [pdf,setPdf] = useState("")
+  
   useEffect(()=>{
     fetch("https://cdn-api.co-vin.in/api/v2/admin/location/states")
       .then(res => res.json())
@@ -73,28 +72,12 @@ function Homepage(){
     }
   
   }
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiI1N2I2NjA2Ni1mNzg1LTQ0MDItOWE5ZS1kNjdmN2U0MTdhZmUiLCJ1c2VyX3R5cGUiOiJCRU5FRklDSUFSWSIsInVzZXJfaWQiOiI1N2I2NjA2Ni1mNzg1LTQ0MDItOWE5ZS1kNjdmN2U0MTdhZmUiLCJtb2JpbGVfbnVtYmVyIjo5OTE2Nzg5ODczLCJiZW5lZmljaWFyeV9yZWZlcmVuY2VfaWQiOjI3NDM1NTAyMDI3NjgwLCJ0eG5JZCI6Ijc3NmNkN2JjLTIyZjAtNDIzYS1iMmY3LTg3YzJlYTBlNGVlNCIsImlhdCI6MTYyMTQyODc5MCwiZXhwIjoxNjIxNDI5NjkwfQ.VQX5dYVumWsV9N37Lnx1F-jGoChIywyCRs1dtI3XEYo"
-    const loadingfun = (bool)=>{
+  const loadingfun = (bool)=>{
   
     setLoading(bool)
   }
-  const dowloadPdf = (id)=>{
-      fetch("https://cdn-api.co-vin.in/api/v2/registration/certificate/public/download?beneficiary_reference_id="+id,
-      {
-        method:"GET",
-        headers:{
-          "Accept": "application/pdf",
-          'Authorization': `Bearer ${token}` ,
-        }
-      })
-      .then(res =>res.text())
-      .then(data=>{
-          if(data===null) alert("not")
-          else setPdf(data)
-      })
-      
-  }
-  console.log(pdf)
+  
+  
   const renderCenters =()=>{
     if(loading){
       return <Loading/>
@@ -146,10 +129,6 @@ function Homepage(){
     
     {renderCenters()}
     
-  </div>
-  <div style={{display:"flex",justifyContent:"center"}}>
-
-  <Certificate Download = {dowloadPdf}/>   
   </div>
   </div>
   </>
